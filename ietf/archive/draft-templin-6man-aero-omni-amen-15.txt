@@ -1,0 +1,1176 @@
+
+
+
+
+Network Working Group                                 F. L. Templin, Ed.
+Internet-Draft                                        The Boeing Company
+Intended status: Standards Track                       14 September 2026
+Expires: 18 March 2027
+
+
+           AERO/OMNI Base Specification Amendments (Volume 1)
+                  draft-templin-6man-aero-omni-amen-15
+
+Abstract
+
+   The Automatic Extended Route Optimization (AERO) and Overlay
+   Multilink Network (OMNI) Interface functional specifications have
+   reached a level of maturity ready for advancement in the RFC
+   publication process.  Updates to the base specifications are
+   documented in this first amendment and any additional future
+   amendments as necessary.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 18 March 2027.
+
+Copyright Notice
+
+   Copyright (c) 2026 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+
+
+Templin                   Expires 18 March 2027                 [Page 1]
+
+Internet-Draft        AERO/OMNI Amendments (Vol. 1)       September 2026
+
+
+Table of Contents
+
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+   2.  AERO/OMNI: First Amendment  . . . . . . . . . . . . . . . . .   3
+     2.1.  Amendment 1.1: Prefix Delegation Administration . . . . .   3
+     2.2.  Amendment 1.2: AERO/OMNI MLA Addressing . . . . . . . . .   5
+     2.3.  Amendment 1.3: Address Resolution for Non-MLAs  . . . . .   5
+     2.4.  Amendment 1.4: OMNI Interface Virtual Router  . . . . . .   6
+     2.5.  Amendment 1.5: OMNI Interface Neighbor Cache  . . . . . .   7
+     2.6.  Amendment 1.6: Scalable Mapping . . . . . . . . . . . . .   8
+     2.7.  Amendment 1.7: Address Duplication Implications . . . . .   9
+     2.8.  Amendment 1.8: Setting Auth Offset  . . . . . . . . . . .   9
+     2.9.  Amendment 1.9: Surrogate Multilink Pilots (MPs) . . . . .   9
+     2.10. Amendment 1.10: Extended AFVI TLVs  . . . . . . . . . . .  10
+     2.11. Amendment 1.11: Path Change Mitigations . . . . . . . . .  11
+     2.12. Amendment 1.12: MAP Proxy/Servers . . . . . . . . . . . .  12
+     2.13. Amendment 1.13: MANET Layering and Addressing . . . . . .  13
+     2.14. Amendment 1.14: TUN/TAP Interfaces  . . . . . . . . . . .  14
+     2.15. Amendment 1.15: Prefix Length Requirements  . . . . . . .  15
+     2.16. Amendment 1.16: OMNI Link Segment Routing . . . . . . . .  15
+     2.17. Amendment 1.17: OMNI Link Security  . . . . . . . . . . .  17
+   3.  Implementation Status . . . . . . . . . . . . . . . . . . . .  17
+   4.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  18
+   5.  Security Considerations . . . . . . . . . . . . . . . . . . .  18
+   6.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  18
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  18
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  18
+     7.2.  Informative References  . . . . . . . . . . . . . . . . .  19
+   Appendix A.  Change Log . . . . . . . . . . . . . . . . . . . . .  21
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  21
+
+1.  Introduction
+
+   The Automatic Extended Route Optimization (AERO)
+   [I-D.templin-6man-aero3] and Overlay Multilink Network (OMNI)
+   Interface [I-D.templin-6man-omni3] functional specifications have
+   reached a level of maturity ready for advancement in the RFC
+   publication process, while this and any other future amendments
+   provide normative updates.  These amendments assume consistency with
+   IPv4 [RFC0791], IPv6 [RFC8200] and the IPv6 neighbor discovery and
+   autoconfiguration services [RFC4861][RFC4862][RFC9915].  The term
+   "IP" refers universally to either the IPv4 or IPv6 protocol version.
+
+   The AERO/OMNI services as updated by these amendments extend the
+   network of networks concept that emerged from the earliest days of
+   Internetworking [CERF1][KAHN][POUZIN].  The concept has carried
+   forward to the present day where the Internet has become successful
+   beyond measure.  The AERO/OMNI services concatenate Internetwork
+
+
+
+Templin                   Expires 18 March 2027                 [Page 2]
+
+Internet-Draft        AERO/OMNI Amendments (Vol. 1)       September 2026
+
+
+   segments through Gateway-to-Gateway peerings as first suggested in
+   "Interconnection of Packet switching Networks" [POUZIN] and later
+   formalized in the "Catenet Model for Internetworking (IEN48)"
+   [CERF2].  The catenet model in particular suggests an interconnection
+   of independent and diverse packet switching network "segments" to
+   form a much larger Internetwork supporting end-to-end services.
+
+   The catenet vision faded into obscurity as the Internet evolved in
+   the decades that followed, and the adaptation layer was omitted from
+   the architecture.  As a result, the Internet has flourished as a
+   monolithic public routing and addressing service interconnecting
+   private domains leading to the rise of the middle (including NATs)
+   and a diminished role for end-to-end [RFC3724].  The adaptation layer
+   manifested by AERO and OMNI now promises to restore the best aspects
+   of end-to-end through incremental deployment of catenet constructs in
+   the modern Internet.
+
+2.  AERO/OMNI: First Amendment
+
+   Amendments to the AERO/OMNI specifications appear in the following
+   sections in the chronological order in which they were identified,
+   formalized and recorded.  Additional amendments may appear in future
+   volumes.
+
+2.1.  Amendment 1.1: Prefix Delegation Administration
+
+   The AERO/OMNI base specifications include comprehensive instructions
+   for Clients to request and receive Mobile Network Prefix (MNP) IP
+   Prefix Delegations (PDs) from the mobility service.  The
+   specifications suggest that the Client should apply these MNP PDs on
+   downstream-attached (or, "tethered") End User Network (EUN)
+   interfaces but do not discuss specific MNP administrative procedures.
+
+   Per this amendment, when a Client receives an MNP PD it should
+   provision the MNP over EUNs in a manner consistent with [RFC9663] and
+   [RFC9762].  More specifically, the Client assigns some portions of
+   the MNP to its EUN interfaces and optionally also sub-delegates other
+   portions of the MNP to requesting EUN nodes.  The Client can also use
+   a virtual interface such as a loopback as an EUN interface.  The
+   Client should then assign an IP address taken from each EUN prefix to
+   a corresponding EUN interface using standard IP address
+   (auto)configuration procedures.
+
+   The Client then associates the IPv6 Subnet Router Anycast (SRA)
+   address [RFC4291] corresponding to the MNP with the OMNI interface
+   but does not assign it to the interface.  For example, if the Client
+   receives the IPv6 MNP PD 2001:db8:1::/48, it can either accept
+   packets with an SRA address 2001:db8:1:*::/64 as the destination and
+
+
+
+Templin                   Expires 18 March 2027                 [Page 3]
+
+Internet-Draft        AERO/OMNI Amendments (Vol. 1)       September 2026
+
+
+   respond with packets that use one of the Client's EUN addresses as
+   the source or forward the packet to an EUN router that configures a
+   more-specific sub-prefix of the ::/48.  In the first case, the
+   wildcard response would represent all sub-prefixes as reachable when
+   in fact some may not be assigned to any EUN links; in the latter
+   case, an adversary may be able to map the EUN internal subnets.
+
+   After the Client configures the SRA address and assigns EUN addresses
+   it can operate as an IP host over the OMNI interface according to the
+   weak end system model [RFC1122] while also serving as an IP router
+   for its EUNs.  The Client then engages host and router operations the
+   same as per [RFC4861] and [RFC8200] except that the Client engages
+   the OMNI interface as a combined host/router interface.
+
+   When the Client acts as a host over the OMNI interface, it can send
+   IPv6 Router Solicitations (RSs) to elicit IPv6 Router Advertisements
+   (RAs) from OMNI link Proxy/Servers.  The Client can then use its EUN
+   addresses for packets exchanged between its local applications and
+   correspondents reached via OMNI link neighbors.  (When the Client has
+   no EUN addresses, it can instead use its OMNI interface Multilink
+   Local Address (MLA) [I-D.templin-6man-mla] with the understanding
+   that the packets may be routable only within the OMNI link limited
+   domain.)
+
+   When the Client acts as a router over the OMNI interface, it forwards
+   IP packets between EUN peers and correspondents reached via OMNI link
+   neighbors but never sends RA messages over the OMNI interface.  This
+   may require the Client to enable IP forwarding on the OMNI interface
+   but without representing itself as an router in OMNI link IPv6
+   Neighbor Discovery (IPv6 ND) messages.  The Client instead sends RAs
+   over its EUN interfaces that include EUN portions of the MNP in
+   Prefix Information Options (PIOs) and also represents itself as a
+   router in other EUN interface IPv6 ND messages.
+
+   Note that the Client could also optionally assign each EUN address it
+   configures to the OMNI interface.  This would give the outward
+   appearance of strong end system support [RFC1122], albeit with added
+   complexity and ambiguity for the Client to coordinate the same IP
+   unicast address assigned to multiple interfaces.
+
+   Further details on MNP PD administrative options are beyond the scope
+   of this amendment.
+
+
+
+
+
+
+
+
+
+Templin                   Expires 18 March 2027                 [Page 4]
+
+Internet-Draft        AERO/OMNI Amendments (Vol. 1)       September 2026
+
+
+2.2.  Amendment 1.2: AERO/OMNI MLA Addressing
+
+   In the addressing model supported under the current specifications,
+   the MLAs of all nodes within the OMNI link limited domain (including
+   Clients, Proxy/Servers and others) should be reachable by all other
+   nodes on the link.  MLAs of nodes beyond the extent of the OMNI link
+   will appear as unreachable destinations though they may be reachable
+   within other OMNI links.  This is due to the limited domain nature of
+   OMNI link routing for MLAs and highlights why MLAs must appear as a
+   lower preference than other GUAs in address selection policies.
+
+   In this addressing model, an MLA prefix (e.g., 2001:30:*::/N
+   [RFC9374]) is configured on-link on the OMNI interface.  The on-link
+   nature of the MLA prefix will cause the network layer to invoke
+   address resolution for destination MLAs within the limited domain.
+   This will cause the OMNI Address Resolution Source (ARS) to either
+   return an NA(AR) message locally for locally-known MLAs (for example,
+   within a Mobile Ad-hoc Network (MANET) local routing region) or
+   propagate the NS(AR) message over the OMNI link to elicit an NA(AR)
+   response from an Address Resolution Target (ART).
+
+   The ARS's NS(AR) uses the invoking packet's address or its local MLA
+   as the Source, uses the MLA of the target as the Target and uses the
+   solicited-node multicast address as the Destination.  If the original
+   packet's source address is not on-link on the OMNI link, the OMNI
+   interface also includes a Route Information Option (RIO) with a
+   prefix that covers the source address as an OMNI sub-option.  The
+   ART's NA(AR) uses the NS(AR) target as both the Source and Target and
+   uses the NS(AR) source as the Destination.  AERO routing will cause
+   these messages to traverse the OMNI link as OMNI Adaptation Layer
+   (OAL)-encapsulated packets and return fresh reachability information.
+
+2.3.  Amendment 1.3: Address Resolution for Non-MLAs
+
+   Non-MLAs include Mobile Network Prefix (MNP) and Foreign Network
+   Prefix (FNP) addresses as well as other addresses matched only by
+   "default".  These prefixes must be configured as reachable (but not
+   on-link) via the OMNI link.  Clients therefore configure routes in
+   the IPv6 routing system that cover MNPs and/or FNPs and with next hop
+   set to the Link-Local Address (LLA) of the OMNI interface internal
+   virtual router.  This will cause all packets with destinations within
+   these off-link prefixes to be delivered to the virtual router.  The
+   route(s) may include specific MNP/FNP prefixes or even the full
+   Mobility Service Prefix and/or ::/0 (i.e., default).
+
+   The OMNI link virtual router then acts as an ARS to resolve
+   adaptation layer addressing information for the packet's destination
+   prefix internally within the adaptation layer and without disturbing
+
+
+
+Templin                   Expires 18 March 2027                 [Page 5]
+
+Internet-Draft        AERO/OMNI Amendments (Vol. 1)       September 2026
+
+
+   the network layer.  While address resolution is in progress, the
+   virtual router maintains a short queue (possibly only a single entry)
+   of packets destined to the ART prefix in the spirit of [RFC4861]
+   (noting that many distinct destinations may match the same ART
+   prefix).  The virtual router may alternately forward packets destined
+   to the ART prefix while bypassing the queue with the understanding
+   that they may be dropped in the network while address resolution is
+   still in progress.  The virtual router should not attach subject
+   packets awaiting address resolution to NS(AR) messages, as they may
+   be produced by high-volume applications (e.g., "flood-pings") that
+   send many unacknowledged packets without waiting for a response.
+
+   In this off-link model, the ARS's NS(AR) message uses the MLA
+   assigned to the OMNI interface as the Source, a /64 Subnet Router
+   Anycast address that covers the subject packet's destination address
+   as the Target and the target's solicited-node multicast address as
+   the Destination.  If the original packet's source is not on-link on
+   the OMNI interface, the NS(AR) also includes an OMNI RIO sub-option
+   with a prefix that covers the source.  The ART's responsive NA(AR)
+   message uses its own MLA as the Source, the NS(AR) target as the
+   Target and the NS(AR) source as the Destination.  The NA(AR) also
+   includes an RIO with a prefix that covers the NS(AR) target.  The
+   target and source OMNI interfaces then cache the RIO information as
+   address resolution results.
+
+   This enhanced address resolution allows the ARS and ART to discover
+   information for entire IPv6 prefix ranges without necessarily
+   conveying reachability information for specific destinations (or even
+   sub-prefixes) within the prefix.  The system therefore depends on the
+   target network returning ICMPv6 Destination Unreachable messages for
+   unreachable destinations within (reachable) prefixes the same as for
+   any router.
+
+2.4.  Amendment 1.4: OMNI Interface Virtual Router
+
+   The virtual router entity within the OMNI interface must present
+   itself to the network layer as a minimally qualified IPv6 router
+   according to IPv6 node requirements [RFC8504].  This includes using
+   its internal LLA to send solicited and unsolicited Router
+   Advertisements as well as respond to Neighbor Solicitations by
+   returning solicited Neighbor Advertisements.
+
+   The virtual router entity uses its internal LLA as the Source or
+   Destination Address for message exchanges with the network layer.
+   The virtual router entity should also provide a configuration option
+   allowing it to either respond to or ignore ICMPv6 Echo Request
+   messages addressed to its internal LLA or the subnet router anycast
+   address for its MLA prefix(es).
+
+
+
+Templin                   Expires 18 March 2027                 [Page 6]
+
+Internet-Draft        AERO/OMNI Amendments (Vol. 1)       September 2026
+
+
+   The virtual router can announce itself to the network layer
+   proactively when an OMNI interface is first enabled, or it may
+   instead wait for the network layer to generate a Router Solicitation
+   (RS).  In both cases, the virtual router is responsible for
+   coordinating with its selected Proxy/Servers.
+
+2.5.  Amendment 1.5: OMNI Interface Neighbor Cache
+
+   Each OMNI interface maintains a standard IPv6 network layer neighbor
+   cache the same as for any IPv6 interface and also maintains an
+   internal adaptation layer neighbor cache.  The network layer neighbor
+   cache maintains entries (NCEs) for the adaptation layer as a virtual
+   router as well as for active on-link destinations only, while the
+   adaptation layer neighbor cache maintains NCEs for both on-link
+   destinations and off-link prefixes reached via the OMNI interface.
+
+   Each network layer NCE resolves to a singular OMNI interface internal
+   link-layer address; this means that all NCE destinations would appear
+   to belong to the same (singular) neighbor.  The adaptation layer
+   virtual router entity will then map the network layer NCE to the
+   corresponding adaptation layer NCE by examining the IP source or
+   destination address rather than the link-layer address.  This
+   relationship establishes a 1x1 mapping between the network layer as a
+   virtual host and the adaptation layer as a virtual peer host/router
+   on a shared link.
+
+   The network and adaptation layer neighbor caches are affected by the
+   transmission and reception of IPv6 Neighbor Discovery (IPv6 ND)
+   messages according to the base specifications.  IPv6 ND messages
+   affect both the network layer and adaptation layer caches for on-link
+   addresses, while only the adaptation layer cache is affected for off-
+   link addresses.
+
+   When the OMNI interface forwards an IPv6 ND message from the network
+   layer to the adaptation layer, the adaptation layer removes the
+   Source/Target Link Layer Address Option (S/TLLAO) and resets the IPv6
+   source address from the network layer Link-Local Address (LLA) to the
+   node's MLA if necessary.  The adaptation layer does not reset the
+   ICMPv6 checksum before performing OAL encapsulation and transmission
+   over an underlay interface since the OMNI option checksum protects
+   integrity as an adaptation layer service.  The ICMPv6 checksum will
+   then appear simply as a random bit string over the wire to be ignored
+   by the OAL destination as well as all OAL intermediate nodes.
+
+   When the underlay forwards an OAL-encapsulated IPv6 ND message to the
+   adaptation layer, the OAL first verifies the OMNI checksum then
+   processes any OMNI sub-options and performs decapsulation.  The OAL
+   then inserts a S/TLLAO that includes the MAC address assigned to the
+
+
+
+Templin                   Expires 18 March 2027                 [Page 7]
+
+Internet-Draft        AERO/OMNI Amendments (Vol. 1)       September 2026
+
+
+   OMNI-internal virtual Ethernet interface and for RA messages only
+   resets the IPv6 source address to the virtual router entity's LLA.
+   The OAL then re-calculates/resets the ICMPv6 checksum and forwards
+   the IPv6 ND message to the network layer via the OMNI interface.  The
+   network layer will then accept the message under the assumption that
+   it originated from an on-link neighbor.
+
+2.6.  Amendment 1.6: Scalable Mapping
+
+   Scaling properties for the worldwide civil aviation airplane
+   population are likely to remain within reasonable bounds for the pure
+   BGP routing system discussed in [I-D.ietf-rtgwg-atn-bgp] for the
+   foreseeable future.  (A single BGP system can presumably support
+   O(10*6) routes when considering the scaling properties of the global
+   public Internet BGP service.)  However, the advent of unmanned air
+   systems and all other manners of mobile nodes will soon present
+   multiple orders of magnitude more mobility targets which may exceed
+   the carrying capacity of a BGP-only service.
+
+   In order to support unbounded scaling, the BGP routing system can be
+   limited to carry only the MLAs of all Proxy/Servers on the OMNI link
+   without carrying the entire population of mobile node MNP/FNP/MLA
+   information.  Each Mobility Anchor Point (MAP) Proxy/Server then
+   registers the MNP/FNP routes and MLA addresses of its dependent
+   mobile nodes with a scalable mapping system that can be used to
+   resolve a target address based on longest prefix match into a MAP
+   Proxy/Server MLA address.  The Domain Name System (DNS) ip6.arpa
+   reverse zone can be used to maintain a searchable database of
+   MNP/FNP/MLA information, with dynamic updates issued by MAPs per
+   [RFC9663].
+
+   To perform address resolution, OMNI link Clients forward address
+   resolution requests in the form of IPv6 Neighbor Solicitation (NS)
+   messages using the MLA of the target as the Target Address into the
+   OMNI link.  Standard BGP routing then directs the request to a
+   Gateway which consults the DNS to determine the MLA of the target's
+   MAP.  The Gateway consults the reverse-DNS based on the target
+   address, and the resolution returns HIP resource records per
+   [RFC8005] that include the MAP address as a rendezvous server
+   address.  The Gateway then forwards the NS to the MAP which returns a
+   fully qualified address resolution response in the form of an IPv6
+   Neighbor Advertisement (NA) message.
+
+
+
+
+
+
+
+
+
+Templin                   Expires 18 March 2027                 [Page 8]
+
+Internet-Draft        AERO/OMNI Amendments (Vol. 1)       September 2026
+
+
+   By maintaining mobile node to MAP mappings in a scalable ancillary
+   lookup directory database, the BGP routing system only needs to scale
+   to the total population of Proxy/Servers and Gateways that make up
+   the OMNI link.  This is likely to remain within acceptable scaling
+   limits even for extremely large mobile node populations for the
+   foreseeable future.
+
+   Note that MAP Proxy/Servers need only add or replace DNS resource
+   records with the IP prefix mappings as they receive registration
+   requests from new Clients.  If the Client moves to a new MAP Proxy/
+   Server, the new MAP simply replaces the old resource records with
+   fresh information.  If the resource records expire before a new MAP
+   Proxy/Server supplies fresh information, the records are removed.
+
+2.7.  Amendment 1.7: Address Duplication Implications
+
+   An implicit assumption in AERO/OMNI is that IP address duplication
+   within the same OMNI link domain could result in an unresolvable and
+   harmful interaction for any nodes affected.  The AERO/OMNI routing
+   system and neighbor discovery services are founded on an expectation
+   of uniqueness of the MNPs/FNPs/MLAs claimed by nodes.  The MLA in
+   particular is carefully coordinated with a registration authority and
+   bound to a public key identity to ensure uniqueness.  MNP/FNP
+   delegations are similarly bound to an MLA when delegated by AERO/OMNI
+   infrastructure supporting nodes to prevent duplication.
+
+2.8.  Amendment 1.8: Setting Auth Offset
+
+   The OMNI option trailer includes a 1-octet Auth Offset field that
+   encodes the offset from the beginning of the OMNI sub-options to the
+   first authentication (or "authentication helper") sub-option.  This
+   allows for more efficient authentication verification at OAL
+   destinations since they need not wade through potentially long
+   concatenations of leading non-authentication sub-options.
+
+   When an OMNI option does not assert an authentication/helper sub-
+   option offset, the OAL source can set Auth Offset to any value no
+   smaller than OMNI Length.  For example, the OAL source can simply set
+   the value 'ff' as an unambiguous indication that no offset is
+   asserted.
+
+2.9.  Amendment 1.9: Surrogate Multilink Pilots (MPs)
+
+   The AERO/OMNI base specifications require that control messages
+   (including IPv6 ND and Multilink Pilot (MP) messages) must be
+   transmitted as whole packets not subject to OAL fragmentation.  Very
+   large original IP packets may therefore be unsuited to serve as MP
+   messages.
+
+
+
+Templin                   Expires 18 March 2027                 [Page 9]
+
+Internet-Draft        AERO/OMNI Amendments (Vol. 1)       September 2026
+
+
+   In that case, the OAL source can continue to hold large packets in a
+   queue (or release them to follow a sub-optimal path) while sending
+   unsolicited Neighbor Advertisement (uNA) messages that include
+   Source, Destination and Flow Label information copied from the large
+   packet as surrogate MPs.
+
+   Transmission of surrogate MPs will cause OAL intermediate systems to
+   securely establish AFVI state, after which the OAL source can release
+   any large packets (while applying fragmentation if necessary followed
+   by header compression) to follow the newly-established AFVI path in
+   the data plane.
+
+2.10.  Amendment 1.10: Extended AFVI TLVs
+
+   The OMNI specification defines a segment Routing Header (SRH) TLV
+   termed the AERO Flow Vector Index (AFVI) TLV.  This amendment defines
+   an extended form of the AFVI TLV to include a Sequence Number and
+   Window size as shown below:
+
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |     Type      |    Length     |I|           Window            |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |                 AERO Flow Vector Index (AFVI)                 |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |                                                               |
+      +-+-+-             Sequence Number (8 octets)              -+-+-+
+      |                                                               |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+                        Figure 1: Extended AFVI TLV
+
+   In this extended form:
+
+   *  Type is set the same as in the OMNI specification.
+
+   *  Length is set to 14.
+
+   *  I is an "Initialize" flag used for the same purpose as in the OMNI
+      specification.
+
+   *  Window is a 15-bit integer that encodes the size of the current
+      send window in units of 512 Sequence Numbers.  For example, if
+      Window encodes the value 128 the current send window is (128 *
+      512) = 65536 Sequence Numbers.
+
+   *  AERO Flow Vector Index (AFVI) is a 32-bit field used for the same
+      purpose as in the OMNI specification.
+
+
+
+
+Templin                   Expires 18 March 2027                [Page 10]
+
+Internet-Draft        AERO/OMNI Amendments (Vol. 1)       September 2026
+
+
+   *  Sequence Number is an 8-octet field that encodes the same value
+      that would appear in the Extended Fragment Header (EFH).  For
+      unfragmented control messages, this value can therefore include a
+      Sequence Number used to establish AFV state.
+
+   When the OAL source includes this extended form of the SRH AFVI TLV
+   in unfragmented control messages, it should not also include an
+   Extended Fragment Header (EFH) as it would only include redundant or
+   conflicting information that could confuse OAL intermediate systems.
+   The SRH AFVI TLV also has the distinct advantage that it is covered
+   by the authentication signature included in the SRH HMAC TLV.
+
+   This amendment therefore deprecates inclusion of the EFH in
+   unfragmented control messages and mandates inclusion of the SRH
+   extended AFVI TLV in its place.
+
+   This amendment further deprecates inclusion of the OMNI Neighbor
+   Synchronization sub-option, as all window synchronization will be
+   unidirectional based on the SRH AFVI TLV and therefore no TCP-like
+   bidirectional handshaking is necessary.
+
+2.11.  Amendment 1.11: Path Change Mitigations
+
+   The AERO specification includes path change mitigations that permit
+   an OAL intermediate node to revert to sending packets with
+   uncompressed headers when the next hop in the AFV path has changed.
+   The OAL destination is then responsible for returning ICMPv6
+   Parameter Problem messages with code "Compressed header expected".
+
+   In open Internetworks not protected by lower layer security, however,
+   this arrangement could open a Denial of Service (DoS) vector in which
+   an unauthorized source produces a flood of packets with uncompressed
+   headers causing an OAL destination to return false path change
+   reports.
+
+   The OAL intermediate node should therefore return an ICMP Parameter
+   Problem message (subject to rate limiting) with code "Compressed
+   header expected" (see: [I-D.templin-6man-aero3]) and then forward
+   packets with uncompressed headers only if the underlay network is
+   secured against DoS spoofing.
+
+
+
+
+
+
+
+
+
+
+
+Templin                   Expires 18 March 2027                [Page 11]
+
+Internet-Draft        AERO/OMNI Amendments (Vol. 1)       September 2026
+
+
+2.12.  Amendment 1.12: MAP Proxy/Servers
+
+   The OMNI specification implies that all First Hop Segment (FHS)
+   Proxy/Servers should be eligible to also act as distributed Mobility
+   Anchor Points (MAPs).  For FHS Proxy/Servers positioned in highly
+   dynamic environments, however, this might lead to undesirable
+   interactions with the OMNI link routing system.  These dynamic FHS
+   Proxy/Servers should therefore not accept the MAP role themselves,
+   but should instead act as transparent proxies to forward Client
+   registration requests to MAPs located in more stable environments.
+
+   The Client discovers the list of eligible MAPs for the OMNI link by
+   querying the Domain Name System (DNS) for the OMNI link Potential
+   Router List (PRL).  The PRL query returns a list of MAP Proxy/Server
+   resource records that include the MLA, underlay IP address(es) and
+   geographic positioning information for each MAP.  Clients can then
+   select specific MAPs by placing the MLA in an OMNI IPv6 Router
+   Solicitation (RS) Destination Address; the FHS Proxy/Server for the
+   Client's link will in turn transparently proxy and forward the RS to
+   the MAP.
+
+   Clients may selectively test connectivity to candidate MAPs before
+   selecting one with the desired performance profile.  The MAP should
+   in turn defer its interactions with the OMNI link routing system
+   until the Client indicates its intention to commit.  This amendment
+   therefore adds a new (C)ommit flag to the OMNI Proxy/Server Control
+   sub-option as shown in Figure 2:
+
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |  Sub-Type=15  |   Sub-Length  |M|P|N|A|R|C|    Reserved       |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       ~                                                               ~
+
+            Figure 2: Proxy/Server Control With (C)ommit Flag
+
+   When the Client sends an RS to test a candidate MAP Proxy/Server's
+   reachability and performance, it includes a Proxy/Server Control sub-
+   option with the (C)ommit flag set to 0.  The MAP Proxy/Server then
+   returns an IPv6 Router Advertisement (RA) message without committing
+   to serve the Client.  When the Client instead sets the (C)ommit flag
+   to 1, the MAP Proxy/Server returns an RA with zero lifetimes if it is
+   unable to commit.  Otherwise, the MAP Proxy/Server creates a Neighbor
+   Cache entry, delegates the Client's requested MNP(s) and injects the
+   Client's MNP(s) and MLA into the OMNI link routing system.  The MAP
+   Proxy/Server then returns an RA with valid lifetimes.
+
+
+
+
+
+
+Templin                   Expires 18 March 2027                [Page 12]
+
+Internet-Draft        AERO/OMNI Amendments (Vol. 1)       September 2026
+
+
+2.13.  Amendment 1.13: MANET Layering and Addressing
+
+   MANET routing for nodes operating in a common local routing region
+   can be configured to operate as either a layer-3 (L3-MANET) or
+   layer-2 (L2-MANET) service.  The AERO/OMNI base specifications assume
+   L3-MANET, but this amendment extends them to also support L2-MANET.
+
+   In L3-MANET, routing and addressing occurs at the IP layer and each
+   MANET forwarding hop decrements the IP TTL/Hop-Limit.  IP address
+   uniqueness assurance is essential to avoid conflicts, while MAC
+   address uniqueness assurance is desirable but optional.  The MANET
+   interface observes a partially-connected multi-access link with some
+   nodes as single-hop IP neighbors and others reachable only over
+   multi-hop paths.  IP multicast transmissions only reach single-hop
+   neighbors which must engage an IP layer service such as Simplified
+   Multicast Forwarding (SMF) [RFC6621] to flood multicast messages to
+   all nodes in the local MANET routing region.  IP header compression
+   state must be maintained at each MANET forwarding hop and may become
+   invalidated due to path changes.
+
+   In L2-MANET, routing and addressing occurs at the MAC layer and the
+   IP TTL/Hop-Limit is not decremented.  Both IP address and MAC address
+   uniqueness assurance are essential to avoid conflicts.  The MANET
+   interface observes a fully-connected multi-access link with all nodes
+   appearing as single-hop IP neighbors even though some may be
+   separated by multiple L2 hops.  IP multicast transmissions are
+   propagated to all MANET nodes even though the L2 service may be
+   required to forward at the layer below IP.  IP header compression
+   state is only maintained at the MANET ingress and egress nodes and is
+   therefore not invalidated due to interior MANET path changes.
+   Instead, the L2 header must carry additional overhead (including a
+   TTL, packet identification and ancillary addresses) to support
+   forwarding at a layer below IP.
+
+   Since L3-MANETs propagate IP host routes, address resolution services
+   based on MANET-wide multicast can often be avoided.  By default,
+   L2-MANETs require multicast-based address resolution services which
+   can be minimized through proactive distribution of IP-to-MAC layer
+   address resolution information.  In both cases, sub-link-scoped
+   multicast addressing is used since only a (small) subset of all MANET
+   nodes appear in the local MANET routing region, while others appear
+   elsewhere in the MANET-of-MANETs.
+
+   In both the L2- and L3-MANET models, MANETs can partition into
+   smaller separate MANETs or merge to form larger MANETs; a singleton
+   MANET router is also regarded as a MANET unto itself.  These MANET
+   characteristics present a challenge to the classical IP subnet model
+   where all nodes within the subnet are presumed to be reachable as
+
+
+
+Templin                   Expires 18 March 2027                [Page 13]
+
+Internet-Draft        AERO/OMNI Amendments (Vol. 1)       September 2026
+
+
+   single-hop neighbors connected to the same (shared) link.  All MANET
+   routers should therefore only configure the MLA and MSP prefixes as
+   on-link prefixes on the OMNI interface.  This causes the node to
+   invoke address resolution for both MANET-local nodes and target peers
+   in other networks reached via the overlay while avoiding multilink
+   subnet issues [RFC4903] since the overlay appears as a connected NBMA
+   link even for peers located in different MANET local routing regions.
+   The AERO/OMNI technologies apply equally to both the L3-MANET and
+   L2-MANET models.
+
+   In addition to MLAs, MANET routers must also configure L2 MAC
+   addresses on their MANET interfaces that are assured unique at least
+   within the MANET local routing region.  MAC addresses can be
+   configured either through random generation with universal/local (U/
+   L) bit set to "local" or administratively assigned according to an
+   organizationally unique identifier (OUI) with U/L set to "universal".
+   The MANET router then assigns the corresponding IPv6 Link-Local
+   Address (LLA) with Modified EUI-64 Interface Identifier to the MANET
+   interface per Section 2.5.1 of [RFC4291] and tests the address for
+   uniqueness in the MANET local routing region according to Duplicate
+   Address Detection (DAD) procedures [RFC4862].  If multiple routers
+   within the same MANET local routing region somehow configure the same
+   MAC address the MANET router must detect and deconflict the
+   duplication (e.g., by assigning a new randomly-generated MAC address)
+   to ensure routing system integrity.
+
+   For further discussion on MANET Architectural Layering and
+   addressing, see: [I-D.ietf-manet-inet-gap-analysis].
+
+   For further discussion on sub-link-scoped multicast addressing, see:
+   [I-D.ietf-6man-sub-link-scope-multicast].
+
+2.14.  Amendment 1.14: TUN/TAP Interfaces
+
+   The AERO/OMNI base specifications use the common virtual Ethernet
+   construct as basis for the OMNI interface, but that construct often
+   requires root access on the device which may not be permitted on
+   standard cellphones.  Implementations can instead use the TUN/TAP
+   interface (operating in TUN mode) in the same way as done for common
+   VPN solutions (e.g., OpenVPN).
+
+
+
+
+
+
+
+
+
+
+
+Templin                   Expires 18 March 2027                [Page 14]
+
+Internet-Draft        AERO/OMNI Amendments (Vol. 1)       September 2026
+
+
+   Using the TUN function of the TUN/TAP interface, the network layer
+   configures MLA, LLA and MSP prefixes as route-to-interface routes on
+   the TUN/TAP interface configured as an OMNI interface.  The OMNI
+   interface will receive raw IP packets from the host operating system
+   with no L2 headers and can then apply OMNI encapsulation before
+   forwarding via an underlay interface.  In the reverse direction, the
+   OMNI interface receives encapsulated packets from underlay
+   interfaces, then decapsulates and delivers them as raw IP packets to
+   the host operating system.
+
+   It is also possible for a single end system to configure multiple
+   TUN/TAP interfaces, with each corresponding to a different OMNI link
+   domain.  The different MLA/MSP prefixes assigned to the TUN/TAP
+   interfaces will differentiate the OMNI links, e.g., by the [RFC9374]
+   Registered Assigning Authority (RAA).
+
+   Since the TUN/TAP interface operating in TUN mode does not have link-
+   layer addresses, the virtual router entity within the interface uses
+   the link-local subnet router address "fe80::/128" as the destination
+   address of RS messages and source address of RA messages.
+
+2.15.  Amendment 1.15: Prefix Length Requirements
+
+   With reference to Section 2.1, the AERO/OMNI Prefix Delegation
+   service should delegate prefix lengths aligned on even nibble
+   boundaries only.  Requests for lengths of /64, /60, /56, /52, etc.
+   are therefore considered aligned while requests for lengths of /63,
+   /62, /61, /59, /58, etc. are not.
+
+   When the Prefix Delegation service receives a non-aligned length
+   request it should delegate the next-shortest aligned prefix, e.g.,
+   for a length of /59 the service should delegate a /56 prefix.
+   However, the service provider should clearly articulate billing
+   policies for prefixes of all lengths.
+
+   This approach ensures consistency with dynamic updates to the reverse
+   DNS as discussed in Section 2.6 and Sections 7 and 8 of [RFC9663].
+
+2.16.  Amendment 1.16: OMNI Link Segment Routing
+
+   OMNI link paths consist of an OAL source, followed by any OAL
+   intermediate nodes within the source MANET, followed by the source
+   MANET border router, followed by the FHS Proxy/Server followed by any
+   OAL intermediate Gateways, followed by the LHS Proxy/Server, followed
+   by the target MANET border router, followed by any OAL intermediate
+   nodes within the target MANET then finally ending at the OAL
+   destination.
+
+
+
+
+Templin                   Expires 18 March 2027                [Page 15]
+
+Internet-Draft        AERO/OMNI Amendments (Vol. 1)       September 2026
+
+
+   When an OAL source performs router discovery, it uses its own MLA as
+   both the RS and OAL source, uses the MLA of a MAP Proxy/Server as the
+   RS destination and uses the MLA of a MANET border router as the OAL
+   destination.  This RS source then includes an OAL SRH with its own
+   MLA as the most recently visited OAL destination then forwards the RS
+   to the first OAL intermediate node on the path toward the MANET
+   border router.  Each OAL intermediate node then rewrites the SRH with
+   its own MLA as the most recently visited OAL destination (while
+   including all previous MLA destinations in their proper visited
+   order) then rewrites the OAL source and forwards the message until it
+   reaches the MANET border router.
+
+   The MANET border router then caches the SRH MLA list that was
+   compiled on the path in a neighbor cache entry for the RS source,
+   includes a new SRH with only its own MLA as a visited destination,
+   then rewrites the OAL source to its own MLA and OAL destination to an
+   FHS Proxy/Server MLA.  The MANET border router then forwards the OAL
+   encapsulated RS to the FHS Proxy/Server which caches the OAL source
+   MLA.  If the FHS Proxy/Server is not the named MAP, it then rewrites
+   the SRH and OAL source to its own MLA, rewrites the OAL destination
+   to the MLA of the MAP, and forwards the RS to the MAP which may be
+   located many OMNI link interior hops away.  Since the MLAs of all
+   Proxy/Servers and Gateways are routable within the OMNI link
+   interior, no further OAL address rewriting occurs on the path to the
+   MAP.
+
+   When the MAP receives the RS, it returns an RA with its own MLA as
+   the RA and OAL source, with the MLA of the RS source as the RA
+   destination and with the FHS Proxy/Server MLA as the OAL destination.
+   When the FHS Proxy/Server receives the RA, it indexes its neighbor
+   cache by the RA destination to rewrite the OAL destination to the MLA
+   of the MANET border router then forwards the RA.  When the MANET
+   border router receives the RA, it uses its cached SRH information to
+   forward the message along the reverse path of MANET intermediate
+   nodes to the RS source.
+
+   Following the initial and sustaining RS/RA exchanges, each OMNI
+   node's MANET border router, FHS Proxy/Server and MAP Proxy/Server
+   will have cached the necessary MLA information and SRH contents
+   necessary for end-to-end forwarding over the OMNI link.
+
+
+
+
+
+
+
+
+
+
+
+Templin                   Expires 18 March 2027                [Page 16]
+
+Internet-Draft        AERO/OMNI Amendments (Vol. 1)       September 2026
+
+
+2.17.  Amendment 1.17: OMNI Link Security
+
+   As amendment to the base specifications, when the OAL source includes
+   an OMNI option authentication signature it calculates the signature
+   only over the length of the encapsulated IPv6 message and OMNI option
+   itself without including a pseudo-header of the OAL header.  This
+   means that authentication can be verified by any OAL intermediate
+   nodes on the path up to and including the OAL destination, although
+   typically only the OAL destination and/or any OMNI link egress or
+   ingress MANET border routers perform verificaton.  An end-to-end
+   adaptation layer authentication service controlling access to upper
+   layer Internetworking services is therefore supported.
+
+   While end-to-end adaptation layer authentication prevents
+   unauthorized access to upper layer Internetworking services, hop-by-
+   hop adaptation layer authentication is also required to ensure
+   routing system integrity for any hops that traverse open Internetwork
+   paths.  Hop-by-hop authentication is supported by HMAC signatures
+   included in the OAL SRH and cover both the SRH and the OAL header
+   itself.  This hop-by-hop service is applied by OAL sources or MANET
+   border routers that connect to open Internetworks then verified by
+   FHS Proxy/Servers to protect the routing system at the OMNI link
+   ingress.  The service is also applied by LHS Proxy/Servers that
+   connect to open Internetworks then verified by MANET border routers
+   or OAL destinations to protect the routing system at the OMNI link
+   egress.  All other adaptation layer hops hops must be protected by
+   lower-layer security services such as IPsec in the OMNI link
+   interdomain or MACsec in any OMNI link ingress/egress MANETs.
+
+   For end-to-end authentication, nodes that verify the authentication
+   signature perform a reverse-DNS lookup on the IPv6 source address of
+   the encapsulated packet.  For hop-by-hop authentication, nodes that
+   verify the signature perform a reverse-DNS lookup on the OAL MLA
+   source address.  The DNS lookup will return HIP resource records per
+   [RFC8005] that include the public key corresponding to the source
+   address which the node then uses to verify the authentication
+   signature.  The DNS therefore provides a secured public key
+   infrastructure for OMNI link adaptation layer authentication.
+
+3.  Implementation Status
+
+   A write-from-scratch reference implementation is under active
+   development, with release version v1.0 tagged on June 2, 2026 (to be
+   made available for public release in the near future).
+
+
+
+
+
+
+
+Templin                   Expires 18 March 2027                [Page 17]
+
+Internet-Draft        AERO/OMNI Amendments (Vol. 1)       September 2026
+
+
+4.  IANA Considerations
+
+   This document includes no actions for IANA.
+
+5.  Security Considerations
+
+   The security considerations in the normative references apply.
+
+6.  Acknowledgements
+
+   This work is aligned with the Boeing/Virginia Tech National Security
+   Institute (VTNSI) 5G MANET research program.
+
+7.  References
+
+7.1.  Normative References
+
+   [I-D.ietf-rtgwg-atn-bgp]
+              Templin, F., Saccone, G., Dawra, G., Lindem, A., and V.
+              Moreno, "A Simple BGP-based Mobile Routing System for the
+              Aeronautical Telecommunications Network", Work in
+              Progress, Internet-Draft, draft-ietf-rtgwg-atn-bgp-32, 25
+              August 2026, <https://datatracker.ietf.org/doc/html/draft-
+              ietf-rtgwg-atn-bgp-32>.
+
+   [I-D.templin-6man-aero3]
+              Templin, F., "Automatic Extended Route Optimization
+              (AERO)", Work in Progress, Internet-Draft, draft-templin-
+              6man-aero3-60, 28 February 2026,
+              <https://datatracker.ietf.org/doc/html/draft-templin-6man-
+              aero3-60>.
+
+   [I-D.templin-6man-mla]
+              Templin, F., "IPv6 Addresses for Ad Hoc Networks", Work in
+              Progress, Internet-Draft, draft-templin-6man-mla-33, 30
+              July 2026, <https://datatracker.ietf.org/doc/html/draft-
+              templin-6man-mla-33>.
+
+   [I-D.templin-6man-omni3]
+              Templin, F., "Transmission of IP Packets over Overlay
+              Multilink Network (OMNI) Interfaces", Work in Progress,
+              Internet-Draft, draft-templin-6man-omni3-80, 28 February
+              2026, <https://datatracker.ietf.org/doc/html/draft-
+              templin-6man-omni3-80>.
+
+   [RFC0791]  Postel, J., "Internet Protocol", STD 5, RFC 791,
+              DOI 10.17487/RFC791, September 1981,
+              <https://www.rfc-editor.org/info/rfc791>.
+
+
+
+Templin                   Expires 18 March 2027                [Page 18]
+
+Internet-Draft        AERO/OMNI Amendments (Vol. 1)       September 2026
+
+
+   [RFC4291]  Hinden, R. and S. Deering, "IP Version 6 Addressing
+              Architecture", RFC 4291, DOI 10.17487/RFC4291, February
+              2006, <https://www.rfc-editor.org/info/rfc4291>.
+
+   [RFC4861]  Narten, T., Nordmark, E., Simpson, W., and H. Soliman,
+              "Neighbor Discovery for IP version 6 (IPv6)", RFC 4861,
+              DOI 10.17487/RFC4861, September 2007,
+              <https://www.rfc-editor.org/info/rfc4861>.
+
+   [RFC4862]  Thomson, S., Narten, T., and T. Jinmei, "IPv6 Stateless
+              Address Autoconfiguration", RFC 4862,
+              DOI 10.17487/RFC4862, September 2007,
+              <https://www.rfc-editor.org/info/rfc4862>.
+
+   [RFC8200]  Deering, S. and R. Hinden, "Internet Protocol, Version 6
+              (IPv6) Specification", STD 86, RFC 8200,
+              DOI 10.17487/RFC8200, July 2017,
+              <https://www.rfc-editor.org/info/rfc8200>.
+
+   [RFC9915]  Mrugalski, T., Volz, B., Richardson, M., Jiang, S., and T.
+              Winters, "Dynamic Host Configuration Protocol for IPv6
+              (DHCPv6)", STD 102, RFC 9915, DOI 10.17487/RFC9915,
+              January 2026, <https://www.rfc-editor.org/info/rfc9915>.
+
+7.2.  Informative References
+
+   [CERF1]    Cerf, V. and R. Kahn, "A Protocol for Packet Network
+              Intercommunication,
+              https://ieeexplore.ieee.org/document/1092259", May 1974.
+
+   [CERF2]    Cerf, V., "The Catenet Model For Internetworking, IETF
+              IEN48, https://www.rfc-editor.org/ien/scanned/ien48.pdf",
+              July 1978.
+
+   [I-D.ietf-6man-sub-link-scope-multicast]
+              Lamparter, D. E., "Sub-Link Scoped IPv6 Multicast
+              Addressing", Work in Progress, Internet-Draft, draft-ietf-
+              6man-sub-link-scope-multicast-00, 15 March 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-6man-
+              sub-link-scope-multicast-00>.
+
+   [I-D.ietf-manet-inet-gap-analysis]
+              Templin, F. and D. J. Jakubisin, "MANET Internetworking:
+              Problem Statement and Gap Analysis", Work in Progress,
+              Internet-Draft, draft-ietf-manet-inet-gap-analysis-10, 27
+              August 2026, <https://datatracker.ietf.org/doc/html/draft-
+              ietf-manet-inet-gap-analysis-10>.
+
+
+
+
+Templin                   Expires 18 March 2027                [Page 19]
+
+Internet-Draft        AERO/OMNI Amendments (Vol. 1)       September 2026
+
+
+   [KAHN]     Perry, T., "The Great Interconnector, IEEE Spectrum,
+              https://spectrum.ieee.org/bob-kahn-2667754905", May 2024.
+
+   [POUZIN]   Pouzin, L., "Interconnection of Packet Switching Networks,
+              http://xn--brwolff-5wa.de/public/Pouzin-1973-
+              Interconnection-of-Packet-Switching-Networks--INWG-Note-
+              42.pdf", October 1973.
+
+   [RFC1122]  Braden, R., Ed., "Requirements for Internet Hosts -
+              Communication Layers", STD 3, RFC 1122,
+              DOI 10.17487/RFC1122, October 1989,
+              <https://www.rfc-editor.org/info/rfc1122>.
+
+   [RFC3724]  Kempf, J., Ed., Austein, R., Ed., and IAB, "The Rise of
+              the Middle and the Future of End-to-End: Reflections on
+              the Evolution of the Internet Architecture", RFC 3724,
+              DOI 10.17487/RFC3724, March 2004,
+              <https://www.rfc-editor.org/info/rfc3724>.
+
+   [RFC4903]  Thaler, D., "Multi-Link Subnet Issues", RFC 4903,
+              DOI 10.17487/RFC4903, June 2007,
+              <https://www.rfc-editor.org/info/rfc4903>.
+
+   [RFC6621]  Macker, J., Ed., "Simplified Multicast Forwarding",
+              RFC 6621, DOI 10.17487/RFC6621, May 2012,
+              <https://www.rfc-editor.org/info/rfc6621>.
+
+   [RFC8005]  Laganier, J., "Host Identity Protocol (HIP) Domain Name
+              System (DNS) Extension", RFC 8005, DOI 10.17487/RFC8005,
+              October 2016, <https://www.rfc-editor.org/info/rfc8005>.
+
+   [RFC8504]  Chown, T., Loughney, J., and T. Winters, "IPv6 Node
+              Requirements", BCP 220, RFC 8504, DOI 10.17487/RFC8504,
+              January 2019, <https://www.rfc-editor.org/info/rfc8504>.
+
+   [RFC9374]  Moskowitz, R., Card, S., Wiethuechter, A., and A. Gurtov,
+              "DRIP Entity Tag (DET) for Unmanned Aircraft System Remote
+              ID (UAS RID)", RFC 9374, DOI 10.17487/RFC9374, March 2023,
+              <https://www.rfc-editor.org/info/rfc9374>.
+
+   [RFC9663]  Colitti, L., Linkova, J., Ed., and X. Ma, Ed., "Using
+              DHCPv6 Prefix Delegation (DHCPv6-PD) to Allocate Unique
+              IPv6 Prefixes per Client in Large Broadcast Networks",
+              RFC 9663, DOI 10.17487/RFC9663, October 2024,
+              <https://www.rfc-editor.org/info/rfc9663>.
+
+
+
+
+
+
+Templin                   Expires 18 March 2027                [Page 20]
+
+Internet-Draft        AERO/OMNI Amendments (Vol. 1)       September 2026
+
+
+   [RFC9762]  Colitti, L., Linkova, J., Ma, X., Ed., and D. Lamparter,
+              "Using Router Advertisements to Signal the Availability of
+              DHCPv6 Prefix Delegation to Clients", RFC 9762,
+              DOI 10.17487/RFC9762, June 2025,
+              <https://www.rfc-editor.org/info/rfc9762>.
+
+Appendix A.  Change Log
+
+   << RFC Editor - remove prior to publication >>
+
+   Differences from -14 to -15:
+
+   *  Added amendments 1.16 and 1.17.
+
+   Differences from -13 to -14:
+
+   *  Added amendment 1.15.
+
+   Differences from -12 to -13:
+
+   *  Updated DNS considerations under scalable mapping.
+
+   *  Now also citing atn-bgp draft.
+
+   Differences from -11 to -12:
+
+   *  Updated DNS considerations under scalable mapping.
+
+   Differences from -10 to -11:
+
+   *  Added catenet and network-of-networks to introduction.
+
+   *  Updated DNS considerations including reference to RFC8005.
+
+Author's Address
+
+   Fred L. Templin (editor)
+   The Boeing Company
+   P.O. Box 3707
+   Seattle, WA 98124
+   United States of America
+   Email: fltemplin@acm.org
+
+
+
+
+
+
+
+
+
+Templin                   Expires 18 March 2027                [Page 21]
