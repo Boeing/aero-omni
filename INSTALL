@@ -7,7 +7,7 @@
 TABLE OF CONTENTS
 --------------------------------------------------------------------------------
   1. Prerequisites
-  2. Download aerod Sources
+  2. Download aero-omni Sources
   3. Install Essential Build Dependencies
   4. CORE / EMANE Installation
        4.1 Clone and Build CORE
@@ -17,12 +17,12 @@ TABLE OF CONTENTS
   5. DPDK Installation
   6. Kea Installation
   7. radvd Installation
-  8. Compile and Install aerod
+  8. Compile and Install aero-omni
   9. Environment Setup Requirements
        9.1 DPDK Hugepages
        9.2 Kea Control Socket
        9.3 CORE GUI Config Files
-       9.4 aerod Config Files
+       9.4 aero-omni Config Files
   Appendix A: CORE/EMANE Python Binding Workaround
 
 
@@ -57,20 +57,20 @@ Create ~/src if it does not already exist:
     $ mkdir ~/src; cd ~/src
 
 
-Method 1 - Download aerod sources via git:
+Method 1 - Download aero-omni sources via git:
 
-    $ git clone https://github.com/Boeing/aerod.git
-    $ cd aerod; git checkout vX.Y
+    $ git clone https://github.com/Boeing/aero-omni.git
+    $ cd aero-omni; git checkout vX.Y
 
 
-Method 2 - Download aerod sources via tarfile:
+Method 2 - Download aero-omni sources via tarfile:
 
 Download the tag-specific tarfile from github, then:
 
-    $ tar -xzf ~/Downloads/aerod-vX.Y.tar.gz
-    $ rm aerod; ln -s aerod-vX.Y aerod; cd aerod
+    $ tar -xzf ~/Downloads/aero-omni-vX.Y.tar.gz
+    $ rm aero-omni; ln -s aero-omni-vX.Y aero-omni; cd aero-omni
 
-IMPORTANT: The aerod symbolic link is essential for model runtime.
+IMPORTANT: The aero-omni symbolic link is essential for model runtime.
 
 
 ================================================================================
@@ -265,9 +265,9 @@ Follow the build/install instructions in "README":
 8. COMPILE AND INSTALL AEROD
 ================================================================================
 
-Compile the aerod source to generate the aerod binary:
+Compile the aero-omni source to generate the aerod binary:
 
-    $ cd ~/src/aerod
+    $ cd ~/src/aero-omni
     $ make clean
     $ make distclean
     $ ./autogen.sh --enable-aero-dpdk
@@ -314,19 +314,19 @@ in the core-gui:
 9.3 CORE GUI Config Files
 --------------------------------------------------------------------------------
 
-~/src/aerod/conf/coregui/24.04 has sample AERO/OMNI config files. Use the latest
-versions found in this directory.
+~/src/aero-omni/conf/coregui/24.04 has sample AERO/OMNI config files. Use the
+latest versions found in this directory.
 
 To use the configs in the core-gui, create symbolic link "/usr/local/etc/aerod"
-to the top-level directory of the aerod sources:
+to the top-level directory of the aero-omni sources:
 
-    $ sudo ln -s ~/src/aerod /usr/local/etc/aerod
+    $ sudo ln -s ~/src/aero-omni /usr/local/etc/aerod
 
 
 9.4 aerod Config Files
 --------------------------------------------------------------------------------
 
-~/src/aerod/conf/files/24.04 has sample aerod config files. These can be
+~/src/aero-omni/conf/files/24.04 has sample aerod config files. These can be
 customized for environment specifics.
 
 
