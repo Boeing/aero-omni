@@ -1,0 +1,395 @@
+================================================================================
+                          AEROD INSTALLATION GUIDE
+                Ubuntu 24.04 LTS - Complete Setup Instructions
+                                    v1.0
+================================================================================
+
+TABLE OF CONTENTS
+--------------------------------------------------------------------------------
+  1. Prerequisites
+  2. Download aerod Sources
+  3. Install Essential Build Dependencies
+  4. CORE / EMANE Installation
+       4.1 Clone and Build CORE
+       4.2 Install EMANE Build Dependencies
+       4.3 Fix setuptools Version
+       4.4 Clone and Build EMANE
+  5. DPDK Installation
+  6. Kea Installation
+  7. radvd Installation
+  8. Compile and Install aerod
+  9. Environment Setup Requirements
+       9.1 DPDK Hugepages
+       9.2 Kea Control Socket
+       9.3 CORE GUI Config Files
+       9.4 aerod Config Files
+  Appendix A: CORE/EMANE Python Binding Workaround
+
+
+================================================================================
+1. PREREQUISITES
+================================================================================
+
+Install Ubuntu 24.04 LTS, either in VirtualBox or as a bare-metal install.
+
+Resources:
+  - Ubuntu Desktop download: https://ubuntu.com/download/desktop
+  - VirtualBox tutorial:     https://www.youtube.com/watch?v=DhVjgI57Ino
+
+NOTE: In VirtualBox, select a base memory of at least 16 GB.
+
+Boot Ubuntu 24.04, then log in and continue with the directions below.
+
+
+================================================================================
+2. DOWNLOAD AEROD SOURCES
+================================================================================
+
+NOTE: aerod can be installed and run on bare-metal hardware without the need to
+      use CORE/EMANE. The CORE/EMANE installation in Section 4 is required only
+      when running aerod inside the network emulation environment; for a
+      bare-metal deployment, Section 4 may be skipped.
+
+NOTE: "vX.Y" specifies the release number, e.g., v1.0.
+
+Create ~/src if it does not already exist:
+
+    $ mkdir ~/src; cd ~/src
+
+
+Method 1 - Download aerod sources via git:
+
+    $ git clone https://github.com/Boeing/aerod.git
+    $ cd aerod; git checkout vX.Y
+
+
+Method 2 - Download aerod sources via tarfile:
+
+Download the tag-specific tarfile from github, then:
+
+    $ tar -xzf ~/Downloads/aerod-vX.Y.tar.gz
+    $ rm aerod; ln -s aerod-vX.Y aerod; cd aerod
+
+IMPORTANT: The aerod symbolic link is essential for model runtime.
+
+
+================================================================================
+3. INSTALL ESSENTIAL BUILD DEPENDENCIES
+================================================================================
+
+Install essential build dependencies and run/compile time services:
+
+    $ sudo apt install build-essential libtool autoconf git libjansson-dev
+    $ sudo apt install rsyslog openssh-server flex bison
+
+
+================================================================================
+4. CORE / EMANE INSTALLATION
+================================================================================
+
+Install CORE-9.2.1 and EMANE-1.5.3 on Ubuntu 24.04 LTS. CORE release-9.2.1 and
+EMANE v1.5.3 are assumed as the baseline.
+
+NOTE: This section is required only for running aerod within the CORE/EMANE
+      network emulation environment. After successfully building and testing
+      CORE/EMANE, it is highly recommended to take a VirtualBox snapshot of
+      Ubuntu for recovery in case the installation becomes corrupted.
+
+
+4.1 Clone and Build CORE
+--------------------------------------------------------------------------------
+
+    $ export REPO_DIR=~/Documents
+    $ cd $REPO_DIR
+    $ git clone https://github.com/coreemu/core.git
+    $ cd core
+    $ git checkout release-9.2.1
+
+    $ sudo apt update && sudo apt install python3.12-venv
+    $ ./setup.sh
+    $ source ~/.bashrc
+    $ inv install
+
+
+4.2 Install EMANE Build Dependencies
+--------------------------------------------------------------------------------
+
+NOTE: Protobuf v3.21.9 (Protobuf library + Protobuf compiler) are part of the
+      Ubuntu 24.04 distribution.
+
+    $ sudo apt install cmake
+    $ sudo apt-get install git gcc g++ autoconf automake libtool dh-python \
+        debhelper python3-setuptools libxml2-dev libprotobuf-dev libpcap-dev \
+        libpcre3-dev uuid-dev pkg-config python3-protobuf protobuf-compiler
+
+
+4.3 Fix setuptools Version
+--------------------------------------------------------------------------------
+
+Re-install setuptools at the proper version.
+
+NOTE: "82" is subject to change and may need to be set to a different value in
+      the future. If the EMANE Python bindings are not found, see the workaround
+      in Appendix A.
+
+    $ sudo /opt/core/venv/bin/python -m pip uninstall -y setuptools
+    $ sudo /opt/core/venv/bin/python -m pip install "setuptools<82"
+
+
+4.4 Clone and Build EMANE
+--------------------------------------------------------------------------------
+
+Clone the EMANE repo:
+
+    $ cd $REPO_DIR
+    $ git clone https://github.com/adjacentlink/emane.git
+    $ cd emane
+    $ git checkout v1.5.3
+
+Install Python bindings:
+
+    $ ./autogen.sh
+    $ PYTHON=/opt/core/venv/bin/python ./configure --prefix=/usr
+    $ cd src/python/
+    $ make -j$(nproc)
+    $ sudo /opt/core/venv/bin/python -m pip install .
+
+Build and install EMANE:
+
+    $ cd $REPO_DIR/emane
+    $ ./autogen.sh
+    $ ./configure --prefix=/usr
+    $ make -j$(nproc)
+      # if 'make -j$(nproc)' fails w/permissions denied to delete __init__.py:
+      $ sudo chown -R "$USER:$USER" src
+      $ make -j$(nproc)
+    $ sudo make install
+
+
+================================================================================
+5. DPDK INSTALLATION
+================================================================================
+
+Download DPDK Latest Long Term Stable (tested with "dpdk-stable-24.11.3"):
+  - https://core.dpdk.org/download/
+
+Build reference:
+  - https://doc.dpdk.org/guides/prog_guide/build-sdk-meson.html
+
+NOTE: Use "sudo" for meson install and pkg-config.
+
+
+DPDK pre-installation:
+
+    $ sudo apt install python3-pip python3-pyelftools meson libnuma-dev
+
+
+Download and extract:
+
+    $ cd ~/src
+    $ tar -xf ~/Downloads/dpdk*.xz
+    $ cd dpdk-stable-*
+
+
+Make the following local edits before building:
+
+  1) Edit ./lib/ip_frag/ip_reassembly.h
+
+         Change:  IP_MAX_FRAG_NUM = RTE_LIBRTE_IP_FRAG_MAX_FRAG,
+         To:      IP_MAX_FRAG_NUM = 64,
+
+  2) Edit ./lib/ip_frag/rte_ipv6_fragmentation.c
+
+         Change:  unlikely(mtu_size < RTE_IPV6_MIN_MTU))
+         To:      unlikely(mtu_size < 1024))
+
+
+Build and install DPDK:
+
+    $ meson setup build
+    $ cd build
+    $ ninja
+    $ sudo meson install
+    $ sudo pkg-config --cflags libdpdk
+    $ sudo pkg-config --libs libdpdk
+
+
+================================================================================
+6. KEA INSTALLATION
+================================================================================
+
+Kea download:
+  - https://www.isc.org/download/#Kea
+  - (Download Kea-3.0.2.tar.xz)
+
+
+Kea pre-installation:
+
+    $ sudo apt install build-essential libboost-all-dev libgtest-dev \
+        libmysqlclient-dev liblog4cplus-dev
+
+
+Extract:
+
+    $ cd ~/src
+    $ tar -xf ~/Downloads/kea-3.0.2.tar.xz
+    $ cd kea-3.0.2
+
+
+Kea build/install (follow instructions in "INSTALL"):
+
+    $ meson setup build
+    $ meson compile -C build
+    $ meson install -C build
+
+
+================================================================================
+7. RADVD INSTALLATION
+================================================================================
+
+Download radvd-2.20 from: https://github.com/radvd-project/radvd/releases/
+
+    $ cd ~/src
+    $ tar -xf ~/Downloads/radvd-2.20.tar.gz
+
+Follow the build/install instructions in "README":
+
+    $ cd radvd-2.20
+    $ sudo apt install -y libbsd-dev
+    $ ./configure --prefix=/usr/local --sysconfdir=/etc --mandir=/usr/share/man
+    $ make
+    $ sudo make install
+
+
+================================================================================
+8. COMPILE AND INSTALL AEROD
+================================================================================
+
+Compile the aerod source to generate the aerod binary:
+
+    $ cd ~/src/aerod
+    $ make clean
+    $ make distclean
+    $ ./autogen.sh --enable-aero-dpdk
+    $ make
+    $ sudo make install
+
+
+================================================================================
+9. ENVIRONMENT SETUP REQUIREMENTS
+================================================================================
+
+IMPORTANT: The following steps must be completed before running aerod.
+
+
+9.1 DPDK Hugepages
+--------------------------------------------------------------------------------
+
+DPDK requires HUGEPAGES support in the host OS. Add the following trailing line
+to the end of /etc/sysctl.conf, then reboot the system:
+
+    vm.nr_hugepages = 4000
+
+NOTE: The VM or physical machine running Ubuntu 24.04 MUST have at least 16 GB
+      of memory in order to set such a large number of hugepages. If running
+      very large CORE emulations runs out of memory, try increasing both the
+      above number and the system memory.
+
+
+9.2 Kea Control Socket
+--------------------------------------------------------------------------------
+
+Kea offers a control UNIX socket that needs to be created in
+/usr/local/var/run/kea unless kea is compiled from sources and with an alternate
+directory specified. To run from a binary distribution without having to build
+from source, disable control socket in the kea configuration file and perform
+the following operations on host system before running the aerod config files
+in the core-gui:
+
+    $ sudo rm -rf /usr/local/var/run/kea /var/run/kea
+    $ sudo mkdir /var/run/kea
+    $ sudo ln -s /var/run/kea /usr/local/var/run/kea
+
+
+9.3 CORE GUI Config Files
+--------------------------------------------------------------------------------
+
+~/src/aerod/conf/coregui/24.04 has sample AERO/OMNI config files. Use the latest
+versions found in this directory.
+
+To use the configs in the core-gui, create symbolic link "/usr/local/etc/aerod"
+to the top-level directory of the aerod sources:
+
+    $ sudo ln -s ~/src/aerod /usr/local/etc/aerod
+
+
+9.4 aerod Config Files
+--------------------------------------------------------------------------------
+
+~/src/aerod/conf/files/24.04 has sample aerod config files. These can be
+customized for environment specifics.
+
+
+================================================================================
+APPENDIX A: CORE/EMANE PYTHON BINDING WORKAROUND
+================================================================================
+
+Workaround for the CORE/EMANE Python binding error. Problem is related to the
+version of the setuptools, with the pkg_resources module not being available in
+/opt/core/venv because of changes in the setuptools package.
+
+
+Step 1 - Verify the symptom.
+--------------------------------------------------------------------------------
+
+Run the following check to confirm that pkg_resources is indeed missing:
+
+    $ /opt/core/venv/bin/python -c 'import pkg_resources; print(pkg_resources.__file__)'
+
+Expected returns if pkg_resources is missing:
+
+    Traceback (most recent call last):
+      File "<string>", line 1, in <module>
+    ModuleNotFoundError: No module named 'pkg_resources'
+
+
+Step 2 - Downgrade the setuptools.
+--------------------------------------------------------------------------------
+
+    $ sudo /opt/core/venv/bin/python -m pip uninstall -y setuptools
+    $ sudo /opt/core/venv/bin/python -m pip install "setuptools<82"
+
+
+Step 3 - Confirm the pkg_resources availability (1).
+--------------------------------------------------------------------------------
+
+    $ /opt/core/venv/bin/python -c 'import pkg_resources; print(pkg_resources.__file__)'
+
+Expected returns if pkg_resources is available:
+
+    <string>:1: UserWarning: pkg_resources is deprecated as an API. See https://
+    setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package
+    is slated for removal as early as 2025-11-30. Refrain from using [] package
+    or pin to Setuptools<81. /opt/core/venv/lib/python3.12/site-packages/
+    pkg_resources/__init__.py
+
+
+Step 4 - Confirm the pkg_resources availability (2).
+--------------------------------------------------------------------------------
+
+    $ /opt/core/venv/bin/python -c "from emane.events import EventService; print('ok')"
+
+Expected returns:
+
+    /opt/core/venv/lib/python3.12/site-packages/emane/events/tdmaschedule.py:34:
+    UserWarning: pkg_resources is deprecated as an API. See https://setuptools.
+    pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated
+    for removal as early as 2025-11-30. Refrain from using this package or pin
+    to Setuptools<81. from pkg_resources import resource_filename
+
+The setup should now work.
+
+
+================================================================================
+aerod Installation Guide  -  Ubuntu 24.04 LTS  -  v1.0
+================================================================================

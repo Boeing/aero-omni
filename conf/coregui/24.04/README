@@ -1,0 +1,23 @@
+By default, most users should use aero-omni5.xml or aero-omni7.xml.
+The former has 1 generic wireless MANET and 1 EMANE MANET, and the
+latter has 2 generic wireless MANETs. Other *.xmls are in various
+stages of development and included as-is with no guarantee of
+suitability for any purpose.
+
+When a model is runing in core-gui, double-clicking on any of the
+node icons will bring up a terminal window on that node. IPv4 and
+NATs are used in the Internetworking underlay, while IPv6 is used
+in the MANETs and Internetworking overlay. Standard commands for
+testing include: "ping6", "ip -6 ro sh", "ssh" and any other
+IPv6-enabled application. "ifconfig omni0" shows the overlay
+multilink network interface.
+
+Currently, all Clients can ping6 each other over the overlay while
+nodes in MANETs can only ping6 other nodes within the same MANET.
+A node in a source MANET can ssh into its connected Client, then
+ssh from there into the target Client and then onto a node in the
+target MANET, but this is application-layer proxying and does not
+represent true MANET Internetworking. Goal is to get nodes in
+source MANET to ping6 nodes in target MANET through segment
+traversal of the Internetworking overlay (to be included in
+future releases).

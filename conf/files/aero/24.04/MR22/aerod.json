@@ -1,0 +1,86 @@
+{
+   "nodeType" : "Client",
+   "omniAddress" : "2001:30::16",
+   "MNP" : "2001:db8:1000:2000::/64",
+   "ReachableTime" : 30,
+   "DepartTime" : 10,
+   "interface" : [
+      {
+         "ifName" : "eth0",
+         "ifType" : "string1",
+         "ifProvider" : "string2",
+         "ifMetric" : "string3",
+         "ifGroup" : "manet",
+         "prlv4" : [ "0.0.0.0" ],
+         "prlv6" : [ "2001:30::1000" ],
+         "tsadv" : [
+            {
+               "tsFormat"    : "IPv6",
+               "tsFlags"     : "ABCDEFGHIJKLMN",
+               "startSrc"    : "2001:db8:0:1000::1",
+               "endSrc"      : "2001:db8:0:1000::1000",
+               "startDst"    : "2001:db8:0:2000::1",
+               "endDst"      : "2001:db8:2000::1000",
+               "startIpsec"  : 1000,
+               "endIpsec"    : 2000,
+               "startFL"     : 100,
+               "endFL"       : 200,
+               "startSport"  : 16384,
+               "endSport"    : 65535,
+               "startDs"     : 0,
+               "endDs"       : 255,
+               "startProt"   : 0,
+               "endProt"     : 128
+            },
+            {
+               "tsFormat"    : "IPv4",
+               "tsFlags"     : "ABCD",
+               "startSrc"    : "10.0.0.1",
+               "endSrc"      : "10.0.0.255",
+               "startDst"    : "192.0.2.1",
+               "endDst"      : "192.0.2.255"
+            },
+            {
+               "tsFormat"    : "IPv4",
+               "tsFlags"     : "IJ",
+               "startSport"  : 256,
+               "endSport"    : 512
+            }
+         ],
+         "tsloc" : [
+            {
+               "tsFormat"    : "IPv6",
+               "tsFlags"     : "ABCDEFGHIJKLMN",
+               "startSrc"    : "2001:db8:0:1000::1",
+               "endSrc"      : "2001:db8:0:1000::1000",
+               "startDst"    : "2001:db8:0:2000::1",
+               "endDst"      : "2001:db8:2000::1000",
+               "startIpsec"  : 1000,
+               "endIpsec"    : 2000,
+               "startFL"     : 100,
+               "endFL"       : 200,
+               "startSport"  : 16384,
+               "endSport"    : 65535,
+               "startDs"     : 0,
+               "endDs"       : 255,
+               "startProt"   : 0,
+               "endProt"     : 128
+            },
+            {
+               "tsFormat"    : "IPv6",
+               "tsFlags"     : "MN",
+               "startProt"   : 128,
+               "endProt"     : 255
+            },
+            {
+               "tsFormat"    : "IPv4",
+               "tsFlags"     : "ABCD",
+               "startSrc"    : "10.0.0.1",
+               "endSrc"      : "10.0.0.255",
+               "startDst"    : "192.0.2.1",
+               "endDst"      : "192.0.2.255"
+            }
+         ]
+      }
+   ]
+} 

@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "jansson.h": "c",
+        "stdbool.h": "c",
+        "udp.h": "c",
+        "aero_init.h": "c",
+        "if.h": "c",
+        "string.h": "c",
+        "aero_local_cache.h": "c",
+        "in.h": "c",
+        "ip6.h": "c",
+        "errno.h": "c",
+        "client.h": "c"
+    }
+}

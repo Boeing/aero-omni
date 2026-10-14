@@ -1,0 +1,1623 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<scenario>
+  <networks>
+    <network id="13" name="Tactical-Edge-2" icon="" canvas="1" model="emane_ieee80211abg" type="EMANE">
+      <position x="1153.7076416015625" y="454.3761291503906" lat="47.57503612508141" lon="-122.11677832063215" alt="2.0"/>
+    </network>
+    <network id="1" name="Tactical-Edge-1" icon="" canvas="1" type="WIRELESS">
+      <position x="269.0" y="247.0" lat="47.57692121828041" lon="-122.12869951657855" alt="2.0"/>
+      <wireless>
+        <configuration name="movement" value="1"/>
+        <configuration name="max-range" value="400.0"/>
+        <configuration name="bandwidth" value="54000000"/>
+        <configuration name="delay" value="5000"/>
+        <configuration name="jitter" value="0"/>
+        <configuration name="loss-range" value="300.0"/>
+        <configuration name="loss-factor" value="1.0"/>
+        <configuration name="loss" value="0.0"/>
+      </wireless>
+    </network>
+  </networks>
+  <devices>
+    <device id="2" name="MR1" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="200.0" y="305.0" lat="47.576393992758625" lon="-122.12962927289762" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="3" name="MR2" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="175.0" y="440.0" lat="47.57516680934774" lon="-122.12996614112917" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="4" name="MR3" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="311.0" y="475.0" lat="47.57484864599086" lon="-122.12813357794957" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="5" name="Client1" icon="" canvas="1" type="PC" class="" image="" compose="" compose_name="">
+      <position x="455.0" y="453.0" lat="47.57504863461227" lon="-122.12619321693586" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="DefaultRoute"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="6" name="IoT1" icon="" canvas="1" type="PC" class="" image="" compose="" compose_name="">
+      <position x="377.0" y="578.0" lat="47.573912325468" lon="-122.12724424581828" alt="2.0"/>
+      <services>
+        <service name="DefaultRoute"/>
+      </services>
+    </device>
+    <device id="7" name="Client2" icon="" canvas="1" type="PC" class="" image="" compose="" compose_name="">
+      <position x="450.0" y="226.0" lat="47.57711210897066" lon="-122.12626059058216" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="DefaultRoute"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="8" name="Proxy-Server" icon="" canvas="1" type="PC" class="" image="" compose="" compose_name="">
+      <position x="664.0" y="41.0" lat="47.578793734981275" lon="-122.12337699852016" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="DefaultRoute"/>
+      </services>
+    </device>
+    <device id="10" name="NAT1" icon="" canvas="1" type="router" class="" image="" compose="" compose_name="">
+      <position x="573.0" y="307.0" lat="47.576375812473536" lon="-122.12460319888298" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="zebra"/>
+        <service name="OSPFv2"/>
+        <service name="NAT"/>
+        <service name="OSPFv3"/>
+      </services>
+    </device>
+    <device id="11" name="Internetwork" icon="" canvas="1" type="router" class="" image="" compose="" compose_name="">
+      <position x="664.0" y="171.0" lat="47.57761205748029" lon="-122.12337699852016" alt="2.0"/>
+      <services>
+        <service name="OSPFv2"/>
+        <service name="IPForward"/>
+        <service name="OSPFv3"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="12" name="NAT2" icon="" canvas="1" type="router" class="" image="" compose="" compose_name="">
+      <position x="754.0" y="311.0" lat="47.576339451884415" lon="-122.1221642728866" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="zebra"/>
+        <service name="OSPFv2"/>
+        <service name="NAT"/>
+        <service name="OSPFv3"/>
+      </services>
+    </device>
+    <device id="9" name="Client3" icon="" canvas="1" type="PC" class="" image="" compose="" compose_name="">
+      <position x="847.5957641601562" y="453.2867736816406" lat="47.57504602773205" lon="-122.12090309530447" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="DefaultRoute"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="14" name="MR7" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="941.3092651367188" y="655.541259765625" lat="47.57320742633556" lon="-122.11964033125064" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="15" name="MR8" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="1156.6605224609375" y="652.273193359375" lat="47.5732371353193" lon="-122.11673853136203" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="16" name="MR9" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="1346.353759765625" y="650.4097290039062" lat="47.57325407549147" lon="-122.11418246634655" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="17" name="MR10" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="1541.1138916015625" y="650.9465942382812" lat="47.573249195017944" lon="-122.11155812629906" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="18" name="MR11" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="940.019775390625" y="773.83251953125" lat="47.57213206563114" lon="-122.11965770677587" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="19" name="MR12" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="1138.2615966796875" y="775.6908569335938" lat="47.57211517170455" lon="-122.11698645190563" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="20" name="MR13" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="1342.0753173828125" y="783.8447875976562" lat="47.57204104521624" lon="-122.1142401171993" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="21" name="MR14" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="1540.58935546875" y="789.9365234375" lat="47.57198566584616" lon="-122.11156519428145" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="22" name="MR15" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="939.2974243164062" y="900.3146362304688" lat="47.57098221915841" lon="-122.11966744026103" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="23" name="MR16" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="1145.506591796875" y="907.0241088867188" lat="47.57092122276734" lon="-122.11688882755791" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="24" name="MR17" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="1344.341552734375" y="907.0985107421875" lat="47.570920546373294" lon="-122.1142095802915" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="25" name="MR18" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="1546.0816650390625" y="909.0364379882812" lat="47.57090292849712" lon="-122.11149118689696" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="26" name="MR19" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="932.187255859375" y="1029.9398193359375" lat="47.569803772934925" lon="-122.11976324785599" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="27" name="MR20" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="1156.02880859375" y="1024.3121337890625" lat="47.56985493580309" lon="-122.11674704353536" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="28" name="MR21" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="1337.3031005859375" y="1026.994140625" lat="47.569830552932736" lon="-122.11430442152864" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="29" name="MR22" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="1561.583740234375" y="1017.4906616210938" lat="47.56991695165333" lon="-122.1112823006307" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="30" name="MR23" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="1055.73388671875" y="1161.48876953125" lat="47.56860781028359" lon="-122.11809849045395" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="31" name="MR24" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="1246.40380859375" y="1164.5916748046875" lat="47.56857960023569" lon="-122.11552926487832" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+    <device id="32" name="MR25" icon="" canvas="1" type="mdr" class="" image="" compose="" compose_name="">
+      <position x="1457.3203125" y="1161.942626953125" lat="47.56860368404204" lon="-122.11268722209134" alt="2.0"/>
+      <services>
+        <service name="IPForward"/>
+        <service name="OSPFv3MDR"/>
+        <service name="zebra"/>
+      </services>
+    </device>
+  </devices>
+  <links>
+    <link node1="16" node2="13">
+      <iface1 id="0" name="eth0" mac="02:02:00:00:00:04" ip6="2001:30::9" ip6_mask="128"/>
+    </link>
+    <link node1="17" node2="13">
+      <iface1 id="0" name="eth0" mac="02:02:00:00:00:05" ip6="2001:30::a" ip6_mask="128"/>
+    </link>
+    <link node1="30" node2="13">
+      <iface1 id="0" name="eth0" mac="02:02:00:00:00:12" ip6="2001:30::17" ip6_mask="128"/>
+    </link>
+    <link node1="31" node2="13">
+      <iface1 id="0" name="eth0" mac="02:02:00:00:00:13" ip6="2001:30::18" ip6_mask="128"/>
+    </link>
+    <link node1="25" node2="13">
+      <iface1 id="0" name="eth0" mac="02:02:00:00:00:0d" ip6="2001:30::12" ip6_mask="128"/>
+    </link>
+    <link node1="18" node2="13">
+      <iface1 id="0" name="eth0" mac="02:02:00:00:00:06" ip6="2001:30::b" ip6_mask="128"/>
+    </link>
+    <link node1="23" node2="13">
+      <iface1 id="0" name="eth0" mac="02:02:00:00:00:0b" ip6="2001:30::10" ip6_mask="128"/>
+    </link>
+    <link node1="10" node2="7">
+      <iface1 id="2" name="eth2" mac="00:00:00:aa:00:0c" ip4="10.0.6.1" ip4_mask="24"/>
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:0d" ip4="10.0.6.20" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="21" node2="13">
+      <iface1 id="0" name="eth0" mac="02:02:00:00:00:09" ip6="2001:30::e" ip6_mask="128"/>
+    </link>
+    <link node1="15" node2="13">
+      <iface1 id="0" name="eth0" mac="02:02:00:00:00:03" ip6="2001:30::8" ip6_mask="128"/>
+    </link>
+    <link node1="11" node2="12">
+      <iface1 id="2" name="eth2" mac="00:00:00:aa:00:06" ip4="10.0.3.1" ip4_mask="24"/>
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:07" ip4="10.0.3.2" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="14" node2="13">
+      <iface1 id="0" name="eth0" mac="02:02:00:00:00:02" ip6="2001:30::7" ip6_mask="128"/>
+    </link>
+    <link node1="3" node2="1">
+      <iface1 id="0" name="eth0" mac="00:00:00:aa:00:0f" ip6="2001:30::2" ip6_mask="128"/>
+    </link>
+    <link node1="22" node2="13">
+      <iface1 id="0" name="eth0" mac="02:02:00:00:00:0a" ip6="2001:30::f" ip6_mask="128"/>
+    </link>
+    <link node1="5" node2="6">
+      <iface1 id="1" name="eth1" mac="00:00:00:aa:00:08" ip4="10.0.1.20" ip4_mask="24"/>
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:09" ip4="10.0.1.21" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="19" node2="13">
+      <iface1 id="0" name="eth0" mac="02:02:00:00:00:07" ip6="2001:30::c" ip6_mask="128"/>
+    </link>
+    <link node1="10" node2="5">
+      <iface1 id="1" name="eth1" mac="00:00:00:aa:00:00" ip4="10.0.4.1" ip4_mask="24"/>
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:01" ip4="10.0.4.20" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="11" node2="8">
+      <iface1 id="0" name="eth0" mac="00:00:00:aa:00:02" ip4="192.168.0.2" ip4_mask="24"/>
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:03" ip4="192.168.0.1" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="2" node2="1">
+      <iface1 id="0" name="eth0" mac="00:00:00:aa:00:0e" ip6="2001:30::1" ip6_mask="128"/>
+    </link>
+    <link node1="5" node2="1">
+      <iface1 id="2" name="eth2" mac="00:00:00:aa:00:11" ip6="2001:30::4" ip6_mask="128"/>
+    </link>
+    <link node1="32" node2="13">
+      <iface1 id="0" name="eth0" mac="02:02:00:00:00:14" ip6="2001:30::19" ip6_mask="128"/>
+    </link>
+    <link node1="7" node2="1">
+      <iface1 id="1" name="eth1" mac="00:00:00:aa:00:12" ip6="2001:30::5" ip6_mask="128"/>
+    </link>
+    <link node1="11" node2="10">
+      <iface1 id="1" name="eth1" mac="00:00:00:aa:00:04" ip4="10.0.2.1" ip4_mask="24"/>
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:05" ip4="10.0.2.2" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="9" node2="13">
+      <iface1 id="1" name="eth1" mac="02:02:00:00:00:01" ip6="2001:30::6" ip6_mask="128"/>
+    </link>
+    <link node1="29" node2="13">
+      <iface1 id="0" name="eth0" mac="02:02:00:00:00:11" ip6="2001:30::16" ip6_mask="128"/>
+    </link>
+    <link node1="24" node2="13">
+      <iface1 id="0" name="eth0" mac="02:02:00:00:00:0c" ip6="2001:30::11" ip6_mask="128"/>
+    </link>
+    <link node1="28" node2="13">
+      <iface1 id="0" name="eth0" mac="02:02:00:00:00:10" ip6="2001:30::15" ip6_mask="128"/>
+    </link>
+    <link node1="27" node2="13">
+      <iface1 id="0" name="eth0" mac="02:02:00:00:00:0f" ip6="2001:30::14" ip6_mask="128"/>
+    </link>
+    <link node1="4" node2="1">
+      <iface1 id="0" name="eth0" mac="00:00:00:aa:00:10" ip6="2001:30::3" ip6_mask="128"/>
+    </link>
+    <link node1="26" node2="13">
+      <iface1 id="0" name="eth0" mac="02:02:00:00:00:0e" ip6="2001:30::13" ip6_mask="128"/>
+    </link>
+    <link node1="9" node2="12">
+      <iface1 id="0" name="eth0" mac="00:00:00:aa:00:0a" ip4="10.0.5.20" ip4_mask="24"/>
+      <iface2 id="1" name="eth1" mac="00:00:00:aa:00:0b" ip4="10.0.5.1" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="20" node2="13">
+      <iface1 id="0" name="eth0" mac="02:02:00:00:00:08" ip6="2001:30::d" ip6_mask="128"/>
+    </link>
+  </links>
+  <service_configurations>
+    <service name="IPForward" node="2">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR1
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR1/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR1]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="2">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::1/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+! instance-id 65
+  router-id 10.0.0.1
+  interface eth0 area 0.0.0.0
+! AERO/OMNI: install OSPF-MDR routes in alternate table
+  table 100
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="3">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR2
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR2/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR2]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="3">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::2/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+! instance-id 65
+  router-id 10.0.0.2
+  interface eth0 area 0.0.0.0
+! AERO/OMNI: install OSPF-MDR routes in alternate table
+  table 100
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="4">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR3
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR3/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR3]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="4">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::3/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+! instance-id 65
+  router-id 10.0.0.3
+  interface eth0 area 0.0.0.0
+! AERO/OMNI: install OSPF-MDR routes in alternate table
+  table 100
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="5">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+#sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+#sysctl -w net.ipv6.conf.eth0.forwarding=1
+#sysctl -w net.ipv4.conf.eth1.forwarding=1
+sysctl -w net.ipv4.conf.eth1.send_redirects=0
+sysctl -w net.ipv4.conf.eth1.rp_filter=0
+sysctl -w net.ipv6.conf.eth1.forwarding=1
+sysctl -w net.ipv4.conf.eth2.forwarding=1
+sysctl -w net.ipv4.conf.eth2.send_redirects=0
+sysctl -w net.ipv4.conf.eth2.rp_filter=0
+sysctl -w net.ipv6.conf.eth2.forwarding=1
+#Client1
+#/usr/sbin/rsyslogd &
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/Client1/aerod.json -i eth1
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#Client1]]></template>
+      </templates>
+    </service>
+    <service name="DefaultRoute" node="5">
+      <templates>
+        <template name="defaultroute.sh"><![CDATA[#!/bin/sh
+# auto-generated by DefaultRoute service
+ip route add default via 10.0.4.1]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="5">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[!interface eth0
+!    ip address 10.0.0.20/24
+!    ipv6 address 2001::14/64
+!
+!interface eth1
+!    ip address 10.0.1.20/24
+!    ipv6 address 2001:0:0:4::14/64
+!
+interface eth2
+    ipv6 address 2001:30::4/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+! instance-id 65
+  router-id 10.0.0.4
+  interface eth2 area 0.0.0.0
+! AERO/OMNI: install OSPF-MDR routes in alternate table
+  table 100
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="7">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+#sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+#sysctl -w net.ipv6.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth1.forwarding=1
+sysctl -w net.ipv4.conf.eth1.send_redirects=0
+sysctl -w net.ipv4.conf.eth1.rp_filter=0
+sysctl -w net.ipv6.conf.eth1.forwarding=1
+#Client2
+#/usr/sbin/rsyslogd &
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/Client2/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#Client2]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="7">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[!interface eth0
+!    ip address 10.0.6.20/24
+!    ipv6 address 2001:0:0:6::14/64
+!
+interface eth1
+    ipv6 address 2001:30::5/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+! instance-id 65
+  router-id 10.0.0.5
+  interface eth1 area 0.0.0.0
+! AERO/OMNI: install OSPF-MDR routes in alternate table
+  table 100
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="8">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+sysctl -w net.ipv4.conf.all.forwarding=1
+sysctl -w net.ipv4.conf.default.forwarding=1
+sysctl -w net.ipv6.conf.all.forwarding=1
+sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#Proxy-Server
+ulimit -S -c unlimited > /dev/null 2>&1
+#/usr/sbin/rsyslogd
+/usr/local/sbin/aerod -d -T Proxy -C /usr/local/etc/aerod/conf/files/aero/24.04/Proxy1/aerod.json
+/usr/local/sbin/radvd -C /usr/local/etc/aerod/conf/files/aero/24.04/Proxy1/radvd.conf
+rm -rf /var/run/kea; mkdir /var/run/kea
+/usr/local/sbin/kea-dhcp6 -c /usr/local/etc/aerod/conf/files/aero/24.04/Proxy1/kea-dhcp6.conf > /dev/null 2>&1 &
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#Proxy-Server]]></template>
+      </templates>
+    </service>
+    <service name="DefaultRoute" node="8">
+      <templates>
+        <template name="defaultroute.sh"><![CDATA[#!/bin/sh
+# auto-generated by DefaultRoute service
+ip route add default via 192.168.0.2]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="9">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+#sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+#sysctl -w net.ipv6.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth1.forwarding=1
+sysctl -w net.ipv4.conf.eth1.send_redirects=0
+sysctl -w net.ipv4.conf.eth1.rp_filter=0
+sysctl -w net.ipv6.conf.eth1.forwarding=1
+#Client3
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/Client3/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#Client3]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="9">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[!interface eth0
+!   ip address 10.0.5.20/24
+!
+interface eth1
+    ipv6 address 2001:30::6/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+! instance-id 65
+  router-id 10.0.100.100
+! interface eth0 area 0.0.0.0
+  interface eth1 area 0.0.0.0
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="14">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR7
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR7/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR7]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="14">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::7/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+! instance-id 65
+  router-id 10.0.100.1
+  interface eth0 area 0.0.0.0
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="15">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR8
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR8/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR8]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="15">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::8/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+! instance-id 65
+  router-id 10.0.100.2
+  interface eth0 area 0.0.0.0
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="16">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR9
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR9/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR9]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="16">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::9/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+! instance-id 65
+  router-id 10.0.100.3
+  interface eth0 area 0.0.0.0
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="17">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR10
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR10/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR10]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="17">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::a/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+! instance-id 65
+  router-id 10.0.100.4
+  interface eth0 area 0.0.0.0
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="18">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR11
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR11/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR11]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="18">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::b/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+! instance-id 65
+  router-id 10.0.100.5
+  interface eth0 area 0.0.0.0
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="19">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR12
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR12/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR12]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="19">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::c/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+! instance-id 65
+  router-id 10.0.100.6
+  interface eth0 area 0.0.0.0
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="20">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR13
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR13/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR13]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="20">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::d/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+!  instance-id 65
+  router-id 10.0.100.7
+  interface eth0 area 0.0.0.0
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="21">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR14
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR14/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR14]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="21">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::e/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+! instance-id 65
+  router-id 10.0.100.8
+  interface eth0 area 0.0.0.0
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="22">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR15
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR15/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR15]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="22">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::f/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+! instance-id 65
+  router-id 10.0.100.9
+  interface eth0 area 0.0.0.0
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="23">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR16
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR16/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR16]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="23">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::10/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+!  instance-id 65
+  router-id 10.0.100.10
+  interface eth0 area 0.0.0.0
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="24">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR17
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR17/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR17]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="24">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::11/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+!  instance-id 65
+  router-id 10.0.100.11
+  interface eth0 area 0.0.0.0
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="25">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR18
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR18/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR18]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="25">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::12/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+!  instance-id 65
+  router-id 10.0.100.12
+  interface eth0 area 0.0.0.0
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="26">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR19
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR19/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR19]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="26">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::13/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+! instance-id 65
+  router-id 10.0.100.13
+  interface eth0 area 0.0.0.0
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="27">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR20
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR20/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR20]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="27">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::14/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+! instance-id 65
+  router-id 10.0.100.14
+  interface eth0 area 0.0.0.0
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="28">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR21
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR21/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR21]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="28">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::15/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+! instance-id 65
+  router-id 10.0.100.15
+  interface eth0 area 0.0.0.0
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="29">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR22
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR22/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR22]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="29">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::16/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+!  instance-id 65
+  router-id 10.0.100.16
+  interface eth0 area 0.0.0.0
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="30">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR23
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR23/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR23]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="30">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::17/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+!  instance-id 65
+  router-id 10.0.100.17
+  interface eth0 area 0.0.0.0
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="31">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR24
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR24/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR24]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="31">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::18/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+!  instance-id 65
+  router-id 10.0.100.18
+  interface eth0 area 0.0.0.0
+!]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="32">
+      <templates>
+        <template name="ipforward.sh"><![CDATA[#!/bin/sh
+# auto-generated by IPForward service (utility.py)
+#sysctl -w net.ipv4.conf.all.forwarding=1
+#sysctl -w net.ipv4.conf.default.forwarding=1
+#sysctl -w net.ipv6.conf.all.forwarding=1
+#sysctl -w net.ipv6.conf.default.forwarding=1
+sysctl -w net.ipv4.conf.all.send_redirects=0
+sysctl -w net.ipv4.conf.default.send_redirects=0
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+# setup forwarding for node interfaces
+sysctl -w net.ipv4.conf.eth0.forwarding=1
+sysctl -w net.ipv4.conf.eth0.send_redirects=0
+sysctl -w net.ipv4.conf.eth0.rp_filter=0
+sysctl -w net.ipv6.conf.eth0.forwarding=1
+#MR25
+/usr/local/sbin/aerod -d -T Client -C /usr/local/etc/aerod/conf/files/aero/24.04/MR25/aerod.json
+mkdir /run/sshd
+chmod 0755 /run/sshd
+/usr/sbin/sshd -o PermitRootLogin=yes
+#MR25]]></template>
+      </templates>
+    </service>
+    <service name="zebra" node="32">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ipv6 address 2001:30::19/128
+    ipv6 ospf6 hello-interval 2
+    ipv6 ospf6 dead-interval 6
+    ipv6 ospf6 retransmit-interval 5
+    ipv6 ospf6 network manet-designated-router
+    ipv6 ospf6 twohoprefresh 3
+    ipv6 ospf6 adjacencyconnectivity uniconnected
+    ipv6 ospf6 lsafullness mincostlsa
+!
+
+router ospf6
+!  instance-id 65
+  router-id 10.0.100.19
+  interface eth0 area 0.0.0.0
+!]]></template>
+      </templates>
+    </service>
+  </service_configurations>
+  <session_origin lat="47.579166412353516" lon="-122.13232421875" alt="2.0" scale="150.0"/>
+  <session_options>
+    <configuration name="controlnet" value=""/>
+    <configuration name="controlnet0" value=""/>
+    <configuration name="controlnet1" value=""/>
+    <configuration name="controlnet2" value=""/>
+    <configuration name="controlnet3" value=""/>
+    <configuration name="controlnet_updown_script" value=""/>
+    <configuration name="enablerj45" value="1"/>
+    <configuration name="preservedir" value="0"/>
+    <configuration name="enablesdt" value="0"/>
+    <configuration name="sdturl" value="tcp://127.0.0.1:50000/"/>
+    <configuration name="ovs" value="0"/>
+    <configuration name="platform_id_start" value="1"/>
+    <configuration name="nem_id_start" value="1"/>
+    <configuration name="link_enabled" value="1"/>
+    <configuration name="loss_threshold" value="30"/>
+    <configuration name="link_interval" value="1"/>
+    <configuration name="link_timeout" value="4"/>
+    <configuration name="mtu" value="0"/>
+    <configuration name="checksums" value="0"/>
+  </session_options>
+  <session_metadata>
+    <configuration name="shapes" value="[{&quot;canvas&quot;: 1, &quot;type&quot;: &quot;rectangle&quot;, &quot;iconcoords&quot;: [511.99999999999943, 374.9999999999994, 511.99999999999943, 374.9999999999994], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 12, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;#CFCFFF&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 0, &quot;bold&quot;: false, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;rectangle&quot;, &quot;iconcoords&quot;: [458.0000000000011, 38.999999999999474, 861.9999999999999, 458.99999999999886], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 12, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;#CFCFFF&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 0, &quot;bold&quot;: false, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [1407.019427687005, 447.4557285923665], &quot;label&quot;: &quot;EMANE VTNSI 5G/SideLink Model&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 12, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: false, &quot;italic&quot;: false, &quot;underline&quot;: false}]"/>
+    <configuration name="edges" value="[]"/>
+    <configuration name="hidden" value="[]"/>
+    <configuration name="canvas" value="{&quot;gridlines&quot;: true, &quot;canvases&quot;: [{&quot;id&quot;: 1, &quot;wallpaper&quot;: null, &quot;wallpaper_style&quot;: 1, &quot;fit_image&quot;: false, &quot;dimensions&quot;: [4000, 3000]}]}"/>
+  </session_metadata>
+</scenario>

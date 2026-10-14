@@ -1,0 +1,30 @@
+1) Something is causing syslog data to show up in the aero/omni
+virtual ethernet pair. "tcpdump -lnni omni0" shows syslog data
+injected as malformed Ethernet frames. Verified that the problem
+is due to something introduced in aero.c since "pre9" tag. It
+seems that the veth socket has somehow become short-circuited with
+the syslogd socket. Ignoring for now since upper layers will simply
+discard the malformed Ethernet frames. Short term fix is to turn
+off rsyslogd; preferred fix is to identify and correct root cause.
+
+2) Still using RFC8200 Fragment Header. Need to change to use
+Destination Option-based Extended Fragment Header (EFH) per
+'draft-templin-6man-ipid-ext2'. Idea is to copy DPDK IPv6
+fragmentation library code into a local directory and edit
+to make it work based on the EFH instead of standard FH.
+Invoke, e.g., as "rte_ipv6_fragment_packet2()". 
+
+3) XDP sockets with eBPF for improved performance.
+
+4) Gateway processing loop and BGP support.
+
+5) MANET Internetworking with segment routing.
+
+6) Header Compression with sequence numbering.
+
+7) Multilink with interface attributes; flow-based path selection.
+
+8) Mobility signaling.
+
+9) IPv6 fragmentation support for packets that exceed OMNI
+   inteface MTU.
