@@ -42,11 +42,12 @@ Boot Ubuntu 24.04, then log in and continue with the directions below.
 
 
 ================================================================================
-2. DOWNLOAD AEROD SOURCES
+2. DOWNLOAD AERO-OMNI SOURCES
 ================================================================================
 
-NOTE: aerod can be installed and run on bare-metal hardware without the need to
-      use CORE/EMANE. The CORE/EMANE installation in Section 4 is required only
+NOTE: The aero-omni sources are used to build an aerod binary that can be
+      installed and run on bare-metal hardware without the need to use
+      CORE/EMANE. The CORE/EMANE installation in Section 4 is required only
       when running aerod inside the network emulation environment; for a
       bare-metal deployment, Section 4 may be skipped.
 
@@ -60,8 +61,8 @@ Create ~/src if it does not already exist:
 Method 1 - Download aero-omni sources via git:
 
     $ git clone https://github.com/Boeing/aero-omni.git
-    $ rm aerod; ln -s aero-omni aerod
-    $ cd aerod; git checkout vX.Y
+    $ rm aerod; ln -s aero-omni aerod; cd aerod
+    $ git checkout vX.Y
 
 
 Method 2 - Download aero-omni sources via tarfile:
@@ -266,7 +267,7 @@ Follow the build/install instructions in "README":
 8. COMPILE AND INSTALL AEROD
 ================================================================================
 
-Compile the aerod source to generate the aerod binary:
+Compile the aero-omni source to generate the aerod binary:
 
     $ cd ~/src/aerod
     $ make clean
