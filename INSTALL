@@ -81,6 +81,7 @@ IMPORTANT: The aerod symbolic link is essential for model runtime.
 
 Install essential build dependencies and run/compile time services:
 
+    $ sudo apt update
     $ sudo apt install build-essential libtool autoconf git libjansson-dev
     $ sudo apt install rsyslog openssh-server flex bison
 
