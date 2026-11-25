@@ -69,8 +69,8 @@ Method 2 - Download aero-omni sources via tarfile:
 
 Download the tag-specific tarfile from github, then:
 
-    $ tar -xzf ~/Downloads/aero-omni-vX.Y.tar.gz
-    $ rm aerod; ln -s aero-omni-vX.Y aerod; cd aerod
+    $ tar -xzf ~/Downloads/aero-omni-X.Y.tar.gz
+    $ rm aerod; ln -s aero-omni-X.Y aerod; cd aerod
 
 IMPORTANT: The aerod symbolic link is essential for model runtime.
 
